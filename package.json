@@ -1,32 +1,33 @@
 {
   "name": "graphql-server",
   "version": "0.0.1",
-  "description": "Simple GraphQL Server",
+  "description": "Simple GraphQL API",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon --exec babel-node src/server.js"
+    "start": "nodemon --exec babel-node server.js"
   },
   "keywords": [
     "GraphQL",
     "Node.js",
-    "Express"
+    "Express",
+    "Apollo"
   ],
-  "author": "",
+  "author": "Recep Köseoğlu",
   "license": "MIT",
   "dependencies": {
     "apollo-server-express": "2.3.1",
     "dotenv": "6.2.0",
     "express": "4.16.4",
     "graphql": "14.0.2",
-    "graphql-tools": "^4.0.3",
-    "request": "^2.88.0",
-    "request-promise": "^4.2.2"
+    "graphql-tools": "4.0.3",
+    "request": "2.88.0",
+    "request-promise": "4.2.2"
   },
   "devDependencies": {
     "babel-cli": "6.26.0",
     "babel-core": "6.26.3",
     "babel-preset-env": "1.7.0",
-    "babel-preset-stage-0": "^6.24.1",
+    "babel-preset-stage-0": "6.24.1",
     "nodemon": "1.18.9"
   }
 }
