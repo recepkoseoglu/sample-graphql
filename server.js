@@ -4,11 +4,12 @@ import { mergeSchemas } from 'graphql-tools';
 
 import { productResolvers, productSchema } from './src/query/Product';
 import { categoryResolvers, categorySchema } from './src/query/Category';
+import { brandResolvers, brandSchema } from './src/query/Brand';
 import { breadcrumbResolvers, breadcrumbSchema } from './src/query/Breadcrumb';
 
 const schema = mergeSchemas({
-  schemas: [productSchema, categorySchema, breadcrumbSchema],
-  resolvers: [productResolvers, categoryResolvers, breadcrumbResolvers],
+  schemas: [productSchema, categorySchema, brandSchema, breadcrumbSchema],
+  resolvers: [productResolvers, categoryResolvers, brandResolvers, breadcrumbResolvers],
 });
 
 const app = express();
@@ -23,4 +24,4 @@ const server = new ApolloServer({
 
 server.applyMiddleware({ path: '/', app });
 
-app.listen(9000, () => console.log('Now browse to localhost:9000'));
+app.listen(9000, () => console.log('Now browse to http://localhost:9000'));

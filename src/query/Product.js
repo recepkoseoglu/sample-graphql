@@ -3,6 +3,11 @@ import Product from '../api/Product';
 
 const productSchema = makeExecutableSchema({
   typeDefs: `
+    type Products {
+      totalCount: Int,
+      result: [Product]
+    }
+
     type Product {
       name: String,
       price: Float,
@@ -32,7 +37,7 @@ const productSchema = makeExecutableSchema({
         _limit: Int,
         _page: Int,
         _sort: Int
-      ): [Product],
+      ): Products,
       product(id: Int!): ProductDetail
     }
   `,

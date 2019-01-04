@@ -3,8 +3,14 @@ import Category from '../api/Category';
 
 const categorySchema = makeExecutableSchema({
   typeDefs: `
+    type Categories {
+      totalCount: Int,
+      result: [Category]
+    }
+
     type Category {
       name: String,
+      slug: String,
       parentInd: Int,
       id: Int
     }
@@ -14,8 +20,8 @@ const categorySchema = makeExecutableSchema({
         _limit: Int,
         _sort: Int,
         parentId: Int
-      ): [Category],
-      cateory(id: Int!): Category
+      ): Categories,
+      category(id: Int!): Category
     }
   `,
 });
@@ -25,14 +31,14 @@ const categories = (_, arg) => {
   return Category.GET_CATEGOIES.call(null, arg);
 };
 
-const cateory = (_, arg) => {
+const category = (_, arg) => {
   return Category.GET_CATEGORY.call(arg);
 };
 
 const categoryResolvers = {
   Query: {
     categories,
-    cateory,
+    category,
   },
 };
 
