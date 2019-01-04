@@ -2,11 +2,13 @@ import express from 'express';
 import { ApolloServer } from 'apollo-server-express';
 import { mergeSchemas } from 'graphql-tools';
 
-import { productResolvers, productSchema } from './src/query/Products';
+import { productResolvers, productSchema } from './src/query/Product';
+import { categoryResolvers, categorySchema } from './src/query/Category';
+import { breadcrumbResolvers, breadcrumbSchema } from './src/query/Breadcrumb';
 
 const schema = mergeSchemas({
-  schemas: [productSchema],
-  resolvers: [productResolvers],
+  schemas: [productSchema, categorySchema, breadcrumbSchema],
+  resolvers: [productResolvers, categoryResolvers, breadcrumbResolvers],
 });
 
 const app = express();
