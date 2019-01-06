@@ -22,7 +22,7 @@ const categorySchema = makeExecutableSchema({
         parentId: Int,
         slug: String
       ): Categories,
-      category(id: Int!): Category
+      category(id: Int): Category
     }
   `,
 });

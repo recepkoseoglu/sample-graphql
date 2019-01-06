@@ -41,7 +41,7 @@ const productSchema = makeExecutableSchema({
         brandId: Int,
         q: String
       ): Products,
-      product(id: Int!): ProductDetail
+      product(id: Int): ProductDetail
     }
   `,
 });

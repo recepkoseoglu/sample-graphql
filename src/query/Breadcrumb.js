@@ -11,7 +11,7 @@ const breadcrumbSchema = makeExecutableSchema({
     }
 
     type Query {
-      breadcrumb(categoryId: Int!): [Category]
+      breadcrumb(categoryId: Int): [Category]
     }
   `,
 });

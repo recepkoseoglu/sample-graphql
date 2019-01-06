@@ -15,7 +15,7 @@ const brandSchema = makeExecutableSchema({
     }
     type Query {
       brands: Brands,
-      brand(id: Int!): Brand
+      brand(id: Int): Brand
     }
   `,
 });
