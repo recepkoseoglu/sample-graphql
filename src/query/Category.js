@@ -19,7 +19,8 @@ const categorySchema = makeExecutableSchema({
       categories(
         _limit: Int,
         _sort: Int,
-        parentId: Int
+        parentId: Int,
+        slug: String
       ): Categories,
       category(id: Int!): Category
     }
