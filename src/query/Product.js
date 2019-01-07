@@ -14,6 +14,7 @@ const productSchema = makeExecutableSchema({
       image: String,
       url: String,
       rating: Int,
+      brandId: Int,
       id: Int,
     }
 
