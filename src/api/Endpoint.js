@@ -25,9 +25,22 @@ class Endpoint {
     return res.body;
   };
 
+  queryParams = params => {
+    return Object.keys(params)
+      .map(key => {
+        const value = params[key];
+        if (Array.isArray(value)) {
+          return value.map(i => `${key}=${i}`).join('&');
+        } else {
+          return `${key}=${value}`;
+        }
+      })
+      .join('&');
+  };
+
   call(pathParams, queryParams, body) {
     const url = new URL(this.path(pathParams), API);
-    url.search = new URLSearchParams(queryParams).toString();
+    url.search = this.queryParams(queryParams);
     return rp({
       uri: url.toString(),
       method: this.method,

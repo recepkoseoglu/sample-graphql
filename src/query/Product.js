@@ -38,7 +38,7 @@ const productSchema = makeExecutableSchema({
         _page: Int,
         _sort: Int,
         categoryId: Int,
-        brandId: Int,
+        brandId: [Int],
         q: String
       ): Products,
       product(id: Int): ProductDetail
