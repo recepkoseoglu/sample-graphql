@@ -5,7 +5,7 @@ const breadcrumbSchema = makeExecutableSchema({
   typeDefs: `
     type Category {
       name: String,
-      parentInd: Int,
+      parentId: Int,
       slug: String,
       id: Int
     }

@@ -11,7 +11,7 @@ const categorySchema = makeExecutableSchema({
     type Category {
       name: String,
       slug: String,
-      parentInd: Int,
+      parentId: Int,
       id: Int
     }
 
@@ -21,6 +21,7 @@ const categorySchema = makeExecutableSchema({
         _sort: Int,
         parentId: Int,
         slug: String
+        parentSlug: String
       ): Categories,
       category(id: Int, slug: String): Category
     }
@@ -28,7 +29,14 @@ const categorySchema = makeExecutableSchema({
 });
 
 // query
-const categories = (_, arg) => {
+const categories = async (_, arg) => {
+  if (arg.parentSlug) {
+    const categoryItem = await category(_, { slug: arg.parentSlug });
+    if (categoryItem) {
+      arg.parentId = categoryItem.id;
+    }
+    delete arg.parentSlug;
+  }
   return Category.GET_CATEGORIES.call(null, arg);
 };
 
