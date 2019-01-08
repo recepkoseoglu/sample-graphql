@@ -1,6 +1,7 @@
 import { makeExecutableSchema } from 'graphql-tools';
 import Product from '../api/Product';
 import { category } from './Category';
+import { brands } from './Brand';
 
 const productSchema = makeExecutableSchema({
   typeDefs: `
@@ -41,8 +42,7 @@ const productSchema = makeExecutableSchema({
         _page: Int,
         _sort: Int,
         categorySlug: String,
-        categoryId: [Int],
-        brandId: [Int],
+        brandSlug: [String],
         q: String
       ): Products,
       product(id: Int): ProductDetail
@@ -58,6 +58,13 @@ const products = async (_, arg) => {
       arg.categoryId = categoryItem.id;
     }
     delete arg.categorySlug;
+  }
+  if (arg.brandSlug) {
+    const brandArray = await brands(_, { slug: arg.brandSlug });
+    if (brandArray) {
+      arg.brandId = brandArray.result.map(i => i.id);
+    }
+    delete arg.brandSlug;
   }
   return Product.GET_PRODUCTS.call(null, arg);
 };

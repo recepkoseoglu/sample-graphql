@@ -14,14 +14,14 @@ const brandSchema = makeExecutableSchema({
       id: Int,
     }
     type Query {
-      brands(q: String): Brands,
+      brands(q: String, slug: [String]): Brands,
       brand(id: Int, slug: String): Brand
     }
   `,
 });
 
 // query
-const brands = (_, arg) => {
+export const brands = (_, arg) => {
   return Brand.GET_BRANDS.call(null, arg);
 };
 
