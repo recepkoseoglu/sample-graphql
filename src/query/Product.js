@@ -1,5 +1,6 @@
 import { makeExecutableSchema } from 'graphql-tools';
 import Product from '../api/Product';
+import { category } from './Category';
 
 const productSchema = makeExecutableSchema({
   typeDefs: `
@@ -15,6 +16,7 @@ const productSchema = makeExecutableSchema({
       url: String,
       rating: Int,
       brandId: Int,
+      categoryId: Int,
       id: Int,
     }
 
@@ -38,7 +40,8 @@ const productSchema = makeExecutableSchema({
         _limit: Int,
         _page: Int,
         _sort: Int,
-        categoryId: Int,
+        categorySlug: String,
+        categoryId: [Int],
         brandId: [Int],
         q: String
       ): Products,
@@ -48,7 +51,14 @@ const productSchema = makeExecutableSchema({
 });
 
 // query
-const products = (_, arg) => {
+const products = async (_, arg) => {
+  if (arg.categorySlug) {
+    const categoryItem = await category(_, { slug: arg.categorySlug });
+    if (categoryItem) {
+      arg.categoryId = categoryItem.id;
+    }
+    delete arg.categorySlug;
+  }
   return Product.GET_PRODUCTS.call(null, arg);
 };
 

@@ -1,7 +1,7 @@
 import Endpoint from './Endpoint';
 
 export class Category {
-  GET_CATEGOIES = new Endpoint({
+  GET_CATEGORIES = new Endpoint({
     path: () => '/categories',
   });
   GET_CATEGORY = new Endpoint({

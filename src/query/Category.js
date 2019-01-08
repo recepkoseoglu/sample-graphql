@@ -22,18 +22,22 @@ const categorySchema = makeExecutableSchema({
         parentId: Int,
         slug: String
       ): Categories,
-      category(id: Int): Category
+      category(id: Int, slug: String): Category
     }
   `,
 });
 
 // query
 const categories = (_, arg) => {
-  return Category.GET_CATEGOIES.call(null, arg);
+  return Category.GET_CATEGORIES.call(null, arg);
 };
 
-const category = (_, arg) => {
-  return Category.GET_CATEGORY.call(arg);
+export const category = (_, arg) => {
+  if (arg.id) {
+    return Category.GET_CATEGORY.call(arg);
+  } else {
+    return Category.GET_CATEGORIES.call(null, arg).then(res => (res.result ? res.result[0] : res));
+  }
 };
 
 const categoryResolvers = {
