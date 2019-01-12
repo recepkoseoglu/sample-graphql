@@ -13,6 +13,9 @@
     "Apollo"
   ],
   "author": "Recep Köseoğlu",
+  "repository": {
+    "url": "https://github.com/recepkoseoglu/sample-graphql.git"
+  },
   "license": "MIT",
   "dependencies": {
     "apollo-server-express": "2.3.1",

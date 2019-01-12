@@ -1,4 +1,4 @@
-import { URL, URLSearchParams } from 'url';
+import { URL } from 'url';
 import rp from 'request-promise';
 import dotenv from 'dotenv';
 
