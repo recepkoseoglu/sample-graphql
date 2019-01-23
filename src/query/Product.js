@@ -41,6 +41,7 @@ const productSchema = makeExecutableSchema({
         _limit: Int,
         _page: Int,
         _sort: Int,
+        _order: String,
         categorySlug: String,
         brandSlug: [String],
         q: String
